@@ -13,4 +13,10 @@
 		<PackageReference Include="IndexRange" IncludeAssets="compile"/>
 	</ItemGroup>
 	
+	<Target Name="AfterPublishCopy" AfterTargets="Publish">
+		<ItemGroup>
+			<MySourceFiles Include="$(PublishDir)/*.*"/>
+		</ItemGroup>
+		<Copy SourceFiles="@(MySourceFiles)" DestinationFolder="../ArchiSteamFarm/ArchiSteamFarm/bin/$(Configuration)/$(TargetFramework)/plugins/SteamKitProxyInjection" SkipUnchangedFiles="false" />
+	</Target>
 </Project>
